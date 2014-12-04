@@ -1,0 +1,43 @@
+/**
+ * loadImg  图片预加载
+ * @param   {Array}     预加载图片的对象数组
+ * author   jianminlu 
+ * update   2014-06-20 9:35:13
+ */
+var loadImg = function(pics, callback){
+    var index = 0;
+    var len = pics.length;
+    var img = new Image();
+    var flag = false;
+
+    var progress = function(w){
+        $('.loading-progress').animate({width:w}, 100, 'linear', function(){
+            $(".loading-num").html(w);
+            $("#pic").attr({"src": img.src});
+        });
+    }
+    var load = function(){
+        img.src = pics[index];
+        img.onload = function() {
+            progress(Math.floor(((index + 1) / len) * 100) + "%");
+            index ++ ;
+            if (index < len) {
+                load();
+            }else{
+                callback()
+            }
+        }
+        return img;
+    }
+    if(len > 0){
+        load();
+    }else{
+        progress("100%");
+    }
+
+    return {
+        pics: pics,
+        load: load,
+        progress: progress
+    };
+}
