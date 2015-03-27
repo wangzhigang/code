@@ -1,0 +1,5 @@
+var replaceHelper = function(str, obj) {
+    return str.replace(/{@(\w+)}/g,function($all,$1){
+        return obj[$1] === 0?0:(obj[$1]||'');
+    });
+};
