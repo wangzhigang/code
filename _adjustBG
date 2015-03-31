@@ -1,0 +1,24 @@
+/**
+		 * 设置窗口大小图片跟着变化
+		 * @private
+		 */
+		function _adjustBG() {
+
+			var imgRatio = 1920 / 1080;
+			var bgCSS = {left: 0, top: 0};
+			var bgWidth = _width();
+			var bgHeight = bgWidth / imgRatio;
+			var bgOffset;
+
+			if(bgHeight >= _height()) {
+				bgOffset = (bgHeight - _height()) /2;
+				$.extend(bgCSS, {top: "-" + bgOffset + "px"});
+			} else {
+				bgHeight = _height();
+				console.log(bgHeight,imgRatio);
+				bgWidth = bgHeight * imgRatio;
+				bgOffset = (bgWidth - _width()) / 2;
+				$.extend(bgCSS, {left: "-" + bgOffset + "px"});
+			}
+			setBG.width( bgWidth ).height( bgHeight ).css(bgCSS);
+		}
