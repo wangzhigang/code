@@ -1,0 +1,13 @@
+var count=20; 
+var original=new Array;//原始数组 
+//给原始数组original赋值 
+for (var i=0;i<count;i++){ 
+	original[i]=i+1; 
+} 
+for (var num,i=0;i<count;i++){ 
+	do{ 
+	num=Math.floor(Math.random()*count); 
+	}while(original[num]==null); 
+	document.write(original[num]+" , "); 
+	original[num]=null; 
+} 
