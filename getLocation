@@ -1,0 +1,29 @@
+getLocation();
+
+/*城市定位代码 begin---可以将代码整理到layout中*/
+function getLocation() {
+    if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition);}
+}
+
+function showPosition(position){
+    var latitude=position.coords.latitude;
+    var longitude=position.coords.longitude;
+    var url='http://api.map.baidu.com/geocoder/v2/?ak=N8ayfSaYtTw37G4S65aTWI2n&callback=renderOption&location='+latitude+','+longitude+'&output=json&pois=1';
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    document.body.appendChild(script);
+}
+function renderOption(response) {
+    if (response.status) {}
+    else{
+
+        var C = response.result.addressComponent.province;
+
+        real_city = C.substr(0,C.length-1);
+
+        //显示城市名称
+        $('#cityDY').html(response.result.addressComponent.city)
+    }
+}
+/*城市定位代码 end*/
