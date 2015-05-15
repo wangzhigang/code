@@ -1,0 +1,36 @@
+/* 
+ * 判断图片类型 
+ *  
+ * @param ths  
+ *          type="file"的javascript对象 
+ * @return true-符合要求,false-不符合 
+ */ 
+function checkImgType(ths){  
+    if (ths.value == "") {  
+        alert("请上传图片");  
+        return false;  
+    } else {  
+        if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(ths.value)) {  
+            alert("图片类型必须是.gif,jpeg,jpg,png中的一种");  
+            ths.value = "";  
+            return false;  
+        }  
+ 
+         else
+        {
+             var img=new Image(); 
+             img.src=filepath;   
+          while(true){ 
+                 if(img.fileSize>0){ 
+                 if(img.fileSize>10*1024){       
+                     alert("图片不大于10M。"); 
+                      return false; 
+                      } 
+                      break; 
+                     } 
+ 
+                  }
+          }
+    }  
+    return true;  
+}
